@@ -3,11 +3,12 @@ require 'sinatra'
 require 'cgi'
 
 get '/:name' do
-  map = {"saga" => "サガ スクウェア",
-         "dorohedoro" => "ドロヘドロ IKKI 小学館",
-         "seiken3" => "聖剣伝説 スクウェア",
-         "eggmonster" => "半熟英雄 スクウェア"}
-  str = CGI.escape(map[params[:name]])
+  name = params[:name]
+  map = {"sagabot" => "サガ スクウェア",
+         "dorohedoro_bot" => "ドロヘドロ IKKI 小学館",
+         "seiken3_bot" => "聖剣伝説 スクウェア",
+         "eggmonster_bot" => "半熟英雄 スクウェア"}
+  str = CGI.escape(map[name])
   <<"EOS"
     <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
     <html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
@@ -47,7 +48,7 @@ get '/:name' do
             });
           }
           </script>
-          <script type="text/javascript" src="http://twitter.com/status/user_timeline/sagabot.json?count=8&callback=onTwitter"></script>
+          <script type="text/javascript" src="http://twitter.com/status/user_timeline/#{name}.json?count=8&callback=onTwitter"></script>
           <div style="display:block;margin-top:50px;">
             <iframe src="http://rcm-jp.amazon.co.jp/e/cm?t=sagabot-22&o=9&p=48&l=st1&mode=music-jp&search=#{str}&fc1=FFFFFF&lt1=_blank&lc1=3366FF&bg1=1C1C1C&f=ifr" marginwidth="0" marginheight="0" width="728" height="90" border="0" frameborder="0" style="border:none;" scrolling="no"></iframe>
           </div>
